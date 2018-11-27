@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 
 import datetime
 
@@ -20,19 +21,20 @@ class User(models.Model):
     birth_month = models.IntegerField()
     birth_day = models.IntegerField()
 
-    @property  # 把方法属性化，变成只读属性
+    @cached_property  # 只计算一次
     def age(self):
         today = datetime.date.today()
         birth_date = datetime.date(self.birth_year, self.birth_month, self.birth_day)
         times = today - birth_date
         return times.days // 365
 
+    # 把方法属性化，变成只读属性
     @property  # 用户表的关联(手动构建关联，一对一的关联)
     def profile(self):
         '''用户的配置项'''
         # if '_profile' not in self.__dict__:
         if not hasattr(self, '_profile'):  # 判断是否有_profile这个属性，有返回True,没有返回False
-            _profile, created = Profile.objects.get_or_create(id=self.id)
+            _profile, _ = Profile.objects.get_or_create(id=self.id)  # _ 接收一个值,但不使用
             self._profile = _profile
         return self._profile
 

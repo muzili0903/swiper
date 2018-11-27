@@ -3,6 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
+    # 设置环境变量  加载django的setting
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "swiper.settings")
     try:
         from django.core.management import execute_from_command_line

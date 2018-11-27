@@ -1,3 +1,13 @@
+amqp==2.3.2
+billiard==3.5.0.4
+celery==4.2.1
+certifi==2018.10.15
+chardet==3.0.4
 Django==1.11.15
+idna==2.7
+kombu==4.2.1
 pkg-resources==0.0.0
 pytz==2018.7
+requests==2.20.1
+urllib3==1.24.1
+vine==1.1.4
