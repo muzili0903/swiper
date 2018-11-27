@@ -1,4 +1,3 @@
-from django.shortcuts import render
 
 from .logic import send_verify_code
 
@@ -20,8 +19,10 @@ def get_profile(request):
 
 
 def modify_profile(request):
+    '''修改个人资料'''
     pass
 
 
 def upload_avatar(request):
+    '''头像上传'''
     pass

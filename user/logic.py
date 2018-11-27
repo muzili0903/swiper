@@ -16,7 +16,7 @@ def gen_verify_code(length=6):
 def send_verify_code(phonenum):
     vcode = gen_verify_code()
     sms_cfg = config.HY_SMS_PARAMS.copy()
-    sms_cfg['content'] = config.HY_SMS_PARAMS % vcode
-    sms_cfg['mobile'] = config.HY_SMS_PARAMS % phonenum
-    response = requests.post(config.HY_SMS_URL, data=sms_cfg)
+    sms_cfg['content'] = sms_cfg['content'] % vcode
+    sms_cfg['mobile'] = phonenum
+    response = requests.post(config.HY_SMS_URL, json=sms_cfg)
     return response
