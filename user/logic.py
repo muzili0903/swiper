@@ -6,6 +6,7 @@ import requests
 
 # Python个人定义的
 from swiper import config
+from worker import call_by_worker
 
 
 def gen_verify_code(length=6):
@@ -13,6 +14,7 @@ def gen_verify_code(length=6):
     return random.randrange(10 ** (length -1), 10**length)
 
 
+@call_by_worker
 def send_verify_code(phonenum):
     vcode = gen_verify_code()
     sms_cfg = config.HY_SMS_PARAMS.copy()

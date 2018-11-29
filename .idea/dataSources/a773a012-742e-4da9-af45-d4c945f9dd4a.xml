@@ -41,7 +41,6 @@
     <index id="16" parent="6" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="17" parent="6">
@@ -91,12 +90,10 @@ model</ColNames>
     <index id="26" parent="8" name="sqlite_autoindex_django_session_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>session_key</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="27" parent="8" name="django_session_expire_date_a5c62663">
       <ColNames>expire_date</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="28" parent="8">
       <ColNames>session_key</ColNames>
@@ -233,13 +230,11 @@ model</ColNames>
     <index id="56" parent="12" name="sqlite_autoindex_user_user_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>nickname</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="57" parent="12" name="sqlite_autoindex_user_user_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>phonenum</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="58" parent="12">
