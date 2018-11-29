@@ -8,7 +8,6 @@ HY_SMS_PARAMS = {
     "token": "fe488d6a51aca562800a3cc9440deb86",
     "appid": "3f3267c831e94f94baf4530d490decd4",
     "templateid": "403022",
-    "param": "87828,3",
+    "param": "%s,120",
     "mobile": None,
-    "content": "您的注册验证码是{%s}"
 }
