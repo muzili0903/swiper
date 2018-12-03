@@ -3,11 +3,16 @@ import datetime
 from user.models import User
 from social.models import Swiperd
 
+
 def get_rcmd_users(user):
     '''
     获取用户列表
     :param user:
     :return:
+
+       max_year        min_year     current_year
+    ----|-----------------|----------------|--------------|-------->
+                                          2018           2019
     '''
     sex = user.profile.dating_sex
     location = user.profile.location
@@ -20,6 +25,6 @@ def get_rcmd_users(user):
 
     users = User.objects.filter(sex=sex, location=location,
                                 birth_year__gte=max_year,
-                                birth_day__lte=min_year)
+                                birth_year__lte=min_year)
 
     return users
