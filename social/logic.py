@@ -1,7 +1,7 @@
 import datetime
 
 from user.models import User
-from social.models import Swiperd
+from social.models import Swiperd, Friend
 
 
 def get_rcmd_users(user):
@@ -28,3 +28,34 @@ def get_rcmd_users(user):
                                 birth_year__lte=min_year)
 
     return users
+
+def like(user, sid):
+    '''喜欢一个用户'''
+    Swiperd.mark(user.id, sid, 'like')
+    if Swiperd.is_liked(sid, user.id):
+        Friend.be_friends(user.id, sid)
+        return True
+    else:
+        return False
+
+
+def superlike(user, sid):
+    Swiperd.mark(user.id, sid, 'superlike')
+    if Swiperd.is_liked(sid, user.id):
+        Friend.be_friends(user.id, sid)
+        return True
+    else:
+        return False
+
+
+def dislike(user, sid):
+    Swiperd.mark(user.id, sid, 'dislike')
+
+
+def rewind(user, sid):
+    try:
+        Swiperd.objects.get(uid=user.id, sid=sid).delete()
+    except Swiperd.DoesNotExist:
+        pass
+    Friend.break_off(user.id, sid)
+
