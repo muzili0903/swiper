@@ -10,6 +10,7 @@ from django.core.cache import cache
 # Python个人定义的
 from lib.qncloud import async_upload_to_qiniu
 from swiper import config
+from user.models import User
 from worker import call_by_worker
 from swiper import settings
 
@@ -56,3 +57,7 @@ def save_upload_file(user, upload_file):
     url = urljoin(config.QN_BASE_URL, filename)
     user.avatar = url
     user.save()
+
+def change_perm_level(user, price):
+    level = price // 5
+    return User.change_vip(user.id, level)

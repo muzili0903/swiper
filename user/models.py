@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from lib.orm import ModelMixin
+from vip.models import Vip
 
 
 class User(models.Model, ModelMixin):
@@ -23,6 +24,8 @@ class User(models.Model, ModelMixin):
     birth_month = models.IntegerField(default=1)
     birth_day = models.IntegerField(default=1)
 
+    vip_id = models.IntegerField(default=1)
+
     @cached_property  # 只计算一次
     def age(self):
         today = datetime.date.today()
@@ -40,6 +43,13 @@ class User(models.Model, ModelMixin):
             self._profile = _profile
         return self._profile
 
+    @property  # 用户表的关联(手动构建关联，一对一的关联)
+    def vip(self):
+        '''用户的配置项'''
+        if not hasattr(self, '_vip'):  # 判断是否有_profile这个属性，有返回True,没有返回False
+            self._vip = Vip.objects.get(id=self.vip_id)
+        return self._vip
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -50,6 +60,13 @@ class User(models.Model, ModelMixin):
             'location': self.location,
             'age': self.age,
         }
+
+    @classmethod
+    def change_vip(cls, id, level):
+        user = cls.objects.get(id=id)
+        user.vip_id += level
+        user.save()
+        return user.vip_id
 
 
 class Profile(models.Model, ModelMixin):

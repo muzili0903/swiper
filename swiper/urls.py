@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^api/user/profile$', user_api.get_profile),
     url(r'^api/user/profile/modify$', user_api.modify_profile),
     url(r'^api/user/avatar$', user_api.upload_avatar),
+    url(r'^api/user/perm$', user_api.check_perm),
+    url(r'^api/user/chvip$', user_api.change_perm),
 
     url(r'^api/social/users', social_api.get_users),
     url(r'^api/social/like', social_api.like),
